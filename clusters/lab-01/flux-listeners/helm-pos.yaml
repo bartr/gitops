@@ -1,0 +1,17 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: pos
+  namespace: flux-system
+spec:
+  releaseName: pos
+  interval: 1m
+  targetNamespace: pos
+  install:
+    createNamespace: true
+  chart:
+    spec:
+      chart: ./clusters/Lab-01/pos
+      sourceRef:
+        kind: GitRepository
+        name: gitops
