@@ -14,10 +14,11 @@
 
 export PAT=myPersonalAccessToken
 export CLUSTER_NAME=lab-01
+export ARC_RG=arc
 
 ```
 
-- Use az CLI to install Arc for GitOps
+## Create cert-manager Kustomization
 
 ```bash
 
@@ -31,13 +32,13 @@ az k8s-configuration flux create \
   --timeout 3m \
   --https-user gitops \
   --cluster-name $CLUSTER_NAME \
-  --resource-group arc \
+  --resource-group $ARC_RG \
   --url https://github.com/bartr/gitops \
   --branch main \
   --https-key "$PAT" \
   --kustomization \
-      name=flux-system \
-      path=./clusters/lab-01/flux-listeners \
+      name=cert-manager \
+      path=./releases/cert-manager \
       timeout=3m \
       sync_interval=1m \
       retry_interval=1m \
@@ -46,7 +47,63 @@ az k8s-configuration flux create \
 
 ```
 
-- Working in progress
+## Create heartbeat Kustomization
+
+```bash
+
+az k8s-configuration flux create \
+  --cluster-type connectedClusters \
+  --interval 1m \
+  --kind git \
+  --name gitops \
+  --namespace flux-system \
+  --scope cluster \
+  --timeout 3m \
+  --https-user gitops \
+  --cluster-name $CLUSTER_NAME \
+  --resource-group $ARC_RG \
+  --url https://github.com/bartr/gitops \
+  --branch main \
+  --https-key "$PAT" \
+  --kustomization \
+      name=heartbeat \
+      path=./releases/heartbeat \
+      timeout=3m \
+      sync_interval=1m \
+      retry_interval=1m \
+      prune=true \
+      force=true
+
+```
+
+## Create POS Helm Chart
+
+```bash
+
+az k8s-configuration flux create \
+  --cluster-type connectedClusters \
+  --interval 1m \
+  --kind git \
+  --name gitops \
+  --namespace flux-system \
+  --scope cluster \
+  --timeout 3m \
+  --https-user gitops \
+  --cluster-name $CLUSTER_NAME \
+  --resource-group $ARC_RG \
+  --url https://github.com/bartr/gitops \
+  --branch main \
+  --https-key "$PAT" \
+  --kustomization \
+      name=pos \
+      path=./releases/pos \
+      timeout=3m \
+      sync_interval=1m \
+      retry_interval=1m \
+      prune=true \
+      force=true
+
+```
 
 ## Support
 
