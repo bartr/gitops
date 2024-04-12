@@ -11,7 +11,7 @@ spec:
     createNamespace: true
   chart:
     spec:
-      chart: ./clusters/Lab-01/pos
+      chart: ./clusters/lab-01/pos
       sourceRef:
         kind: GitRepository
         name: gitops

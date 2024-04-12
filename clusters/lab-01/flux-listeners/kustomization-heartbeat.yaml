@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m0s
-  path: ./clusters/Lab-01/heartbeat/base
+  path: ./clusters/lab-01/heartbeat/base
   prune: true
   sourceRef:
     kind: GitRepository
