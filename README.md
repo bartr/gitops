@@ -67,7 +67,7 @@ az k8s-configuration flux create \
   --https-key "$PAT" \
   --kustomization \
       name=heartbeat \
-      path=./releases/heartbeat \
+      path=./releases/heartbeat/base \
       timeout=3m \
       sync_interval=1m \
       retry_interval=1m \
