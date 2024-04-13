@@ -5,6 +5,8 @@
 ## Prerequisites
 
 - Azure Arc enabled Kubernetes Cluster
+- az CLI (logged into the correct subscription)
+- kubectl CLI (logged into the correct cluster)
 - A GitHub Personal Access Token with `repo` permissions
   - If using SSO, make sure to enable the PAT for the GitHub tenant
 
