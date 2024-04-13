@@ -10,6 +10,14 @@
 - A GitHub Personal Access Token with `repo` permissions
   - If using SSO, make sure to enable the PAT for the GitHub organization
 
+## Lab Goals
+
+At the end of this lab, you will have an Arc enabled GitOps cluster with 3 Kustomizations and a Helm Release
+
+![GitOps Kustomizations](./images/GitOps-Kustomizations.png)
+
+![GitOps Configuration](./images/GitOps-Configuration.png)
+
 ## Install Arc for GitOps
 
 - Set environment variables
