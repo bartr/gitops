@@ -148,7 +148,7 @@ az connectedk8s connect --name $ARC_NAME --resource-group $ARC_RG
 ```powershell
 # Add flux extension
 az k8s-configuration flux create `
-  --url https://github.com/dominos-pizza/repoName `
+  --url https://github.com/bartr/gitops `
   --https-key $PAT `
   --cluster-type connectedClusters `
   --interval 1m `
@@ -158,12 +158,12 @@ az k8s-configuration flux create `
   --scope cluster `
   --timeout 3m `
   --https-user gitops `
-  --cluster-name Lab-02 `
+  --cluster-name $ARC_NAME `
   --resource-group arc `
   --branch labs `
   --kustomization `
-      name=flux-system `
-      path=./clusters/Lab-02/flux-system/listeners `
+      name=cert-manager `
+      path=./releases/cert-manager `
       timeout=3m `
       sync_interval=1m `
       retry_interval=1m `
