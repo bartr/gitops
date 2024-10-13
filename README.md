@@ -26,7 +26,7 @@ At the end of this lab, you will have an Arc enabled GitOps cluster with 3 Kusto
 ```bash
 
 export PAT=myPersonalAccessToken
-export CLUSTER_NAME=gitops-lab
+export CLUSTER_NAME=lab01
 export ARC_RG=arc
 export CONFIG_NAME=gitops
 
@@ -51,11 +51,11 @@ az k8s-configuration flux create \
   --cluster-name $CLUSTER_NAME \
   --resource-group $ARC_RG \
   --url https://github.com/bartr/gitops \
-  --branch main \
+  --branch circlek \
   --https-key "$PAT" \
   --kustomization \
       name=cert-manager \
-      path=./releases/cert-manager \
+      path=./clusters/lab01/cert-manager \
       timeout=3m \
       sync_interval=1m \
       retry_interval=1m \
@@ -83,7 +83,7 @@ kubectl get pods -n cert-manager
 
 az k8s-configuration flux kustomization create \
   --kustomization-name heartbeat \
-  --path ./releases/heartbeat/base \
+  --path path=./clusters/lab01/heartbeat/base \
   --depends-on cert-manager \
   --name $CONFIG_NAME \
   --cluster-name $CLUSTER_NAME \
