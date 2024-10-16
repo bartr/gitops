@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: ghcr.io/cse-labs/heartbeat:0.4.0
+          image: ghcr.io/cse-labs/heartbeat:0.3.0
           imagePullPolicy: Always
 
           args:
