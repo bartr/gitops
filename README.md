@@ -31,6 +31,34 @@ export ARC_RG=arc
 
 ```
 
+## Install Arc
+
+```bash
+
+# create service account
+kubectl create serviceaccount arc-user -n default
+kubectl create clusterrolebinding arc-user-binding --clusterrole cluster-admin --serviceaccount default:arc-user
+
+# create service secret
+kubectl apply -f - <<EOF
+apiVersion: v1
+kind: Secret
+metadata:
+  name: arc-user-secret
+  annotations:
+    kubernetes.io/service-account.name: arc-user
+type: kubernetes.io/service-account-token
+EOF
+
+# export the TOKEN to use in the Azure portal
+export TOKEN=$(kubectl get secret arc-user-secret -o jsonpath='{$.data.token}' | base64 -d | sed 's/$/\n/g')
+echo $TOKEN
+
+# Connect AKS to Arc
+az connectedk8s connect --name $CLUSTER_NAME --resource-group $ARC_RG
+
+```
+
 ## Create cert-manager Kustomization
 
 - `releases/cert-manager` is a YAML deployment manifest
@@ -74,7 +102,7 @@ kubectl get pods -n cert-manager
 
 ## Create heartbeat Kustomization
 
-- `releases/heartbeat` is a Kustomization manifest
+- `clusters/clusterName/heartbeat/base` is a Kustomization manifest
 - The configuration `depends on` the `cert-manager` Kustomization
 - Since the `gitops` configuration is already created, only add the Kustomization
 
@@ -104,10 +132,9 @@ kubectl get pods -n heartbeat
 
 ```
 
-## Create POS Helm Chart
+## Create POS Kustomization
 
-- `releases/pos` is a Flux HelmRelease CRD
-  - This will result in a POS Kustomization and HelmRelease in Azure Arc GitOps
+- `clusters/clusterName/pos/base` is a Kustomization manifest
 - The configuration `depends on` the `cert-manager` Kustomization
 - Since the `gitops` configuration is already created, only add the Kustomization
 
