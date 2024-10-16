@@ -40,7 +40,7 @@ spec:
           - name: City
             value: Austin
           - name: Store
-            value: Lab-01
+            value: Lab-02
           - name: Ring
             value: lab
           - name: Namespace

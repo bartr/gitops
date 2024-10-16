@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pos
-  namespace: pos
+  name: heartbeat
+  namespace: heartbeat
   labels:
-    app.kubernetes.io/name: pos
+    app.kubernetes.io/name: heartbeat
 spec:
   replicas: 1
   strategy:
@@ -14,11 +14,11 @@ spec:
        maxUnavailable: 1
   selector:
     matchLabels:
-      app: pos
+      app: heartbeat
   template:
     metadata:
       labels:
-        app: pos
+        app: heartbeat
     spec:
       containers:
         - name: app
@@ -29,10 +29,12 @@ spec:
             - -log
 
           env:
+          - name: Version
+            value: 0.4.0
           - name: URI
-            value: /pos
+            value: /heartbeat
           - name: TITLE
-            value: Point of Sale
+            value: Node heartbeat
           - name: Region
             value: Lab
           - name: State
@@ -40,13 +42,13 @@ spec:
           - name: City
             value: Austin
           - name: Store
-            value: Lab-01
+            value: Lab-02
           - name: Ring
             value: lab
           - name: Namespace
-            value: pos
+            value: heartbeat
           - name: Application
-            value: pos
+            value: heartbeat
 
           ports:
             - name: http
@@ -55,7 +57,7 @@ spec:
 
           livenessProbe:
             httpGet:
-              path: /pos/healthz
+              path: /healthz
               port: http
             initialDelaySeconds: 5
             failureThreshold: 10

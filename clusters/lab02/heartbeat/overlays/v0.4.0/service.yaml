@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: pos
-  namespace: pos
+  name: heartbeat
+  namespace: heartbeat
 spec:
   selector:
-    app: pos
+    app: heartbeat
 
   type: LoadBalancer
   ports:
