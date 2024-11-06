@@ -9,8 +9,6 @@ spec:
   targetNamespace: pos
   install:
     createNamespace: true
-  dependsOn:
-    - name: cert-manager
   chart:
     spec:
       chart: ./charts/pos
