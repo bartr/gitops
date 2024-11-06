@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./clusters/lab01/flux-system/listeners
+  path: ./clusters/lab01/flux-listeners
   prune: true
   sourceRef:
     kind: GitRepository

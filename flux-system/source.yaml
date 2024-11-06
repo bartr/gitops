@@ -9,8 +9,6 @@ spec:
     name: flux-system
 
 # update these values to your repo and branch
-# run "ds cicd" to update the Cluster manifests
-# run "ds deploy" to push the GitOps changes to GitHub
 
   url: https://github.com/bartr/gitops
   ref:
