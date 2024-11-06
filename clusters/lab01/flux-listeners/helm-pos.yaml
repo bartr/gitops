@@ -9,9 +9,13 @@ spec:
   targetNamespace: pos
   install:
     createNamespace: true
+  dependsOn:
+    - name: cert-manager
   chart:
     spec:
       chart: ./charts/pos
+      valuesFiles:
+        - ./clusters/lab01/pos/values.yaml
       sourceRef:
         kind: GitRepository
         name: gitops
