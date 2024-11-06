@@ -8,7 +8,7 @@ spec:
   path: ./clusters/lab01/heartbeat/base
   prune: true
   dependsOn:
-    -name: cert-manager
+    cert-manager
   sourceRef:
     kind: GitRepository
     name: gitops
