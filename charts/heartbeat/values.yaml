@@ -1,11 +1,11 @@
-# Default values for pos
+# Default values for heartbeat
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-namespace: pos
-nameOverride: pos
-fullnameOverride: pos
-uri: /pos
+namespace: heartbeat
+nameOverride: heartbeat
+fullnameOverride: heartbeat
+uri: /heartbeat
 
 image:
   repository: ghcr.io/cse-labs/heartbeat
@@ -14,10 +14,10 @@ image:
   tag: "0.4.0"
 
 env:
-  Namespace: pos
-  Application: pos
-  TITLE: POS
-  URI: /pos
+  Namespace: heartbeat
+  Application: heartbeat
+  TITLE: Heartbeat
+  URI: /heartbeat
   Region: Lab
   State: TX
   City: Austin
@@ -29,5 +29,5 @@ service:
 
 livenessProbe:
   httpGet:
-    path: /pos/healthz
+    path: /heartbeat/healthz
     port: http
