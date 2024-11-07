@@ -14,7 +14,6 @@ spec:
       chart: ./charts/pos
       valuesFiles:
         - values.yaml
-        - ./clusters/lab01/pos/values.yaml
       sourceRef:
         kind: GitRepository
         name: gitops
