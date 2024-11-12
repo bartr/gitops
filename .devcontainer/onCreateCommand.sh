@@ -22,22 +22,35 @@ git config --global diff.colorMoved zebra
 git config --global devcontainers-theme.show-dirty 1
 git config --global core.editor "nano -w"
 
+echo "installing flux"
+curl -s https://fluxcd.io/install.sh | sudo bash
+sudo chown root:docker flux
+
 echo "generating completions"
 mkdir -p "$HOME/.oh-my-zsh/completions"
+flux completion zsh > "$HOME/.oh-my-zsh/completions/_flux"
 helm completion zsh > "$HOME/.oh-my-zsh/completions/_helm"
-kubectl completion zsh > "$HOME/.oh-my-zsh/completions/_kubectl"
 k3d completion zsh > "$HOME/.oh-my-zsh/completions/_k3d"
+kubectl completion zsh > "$HOME/.oh-my-zsh/completions/_kubectl"
 kustomize completion zsh > "$HOME/.oh-my-zsh/completions/_kustomize"
 
 # Create aliases
 mkdir -p "$HOME/.oh-my-zsh/customizations"
 {
+    echo "alias ipconfig='ip -4 a show eth0 | grep inet | sed \"s/inet//g\" | sed \"s/ //g\" | cut -d / -f 1'"
+
+    echo ""
     echo "#kubectl aliases"
     echo "alias k='kubectl'"
     echo "alias kaf='kubectl apply -f'"
-    echo "alias kak='kubectl apply -k'"
     echo "alias kdelf='kubectl delete -f'"
     echo "alias kl='kubectl logs'"
+    echo "alias kak='kubectl apply -k'"
+    echo "alias kuse='kubectl config use-context'"
+    echo "alias kgp='kubectl get pods -A'"
+    echo "alias kgs='kubectl get svc -A'"
+    echo "alias kgi='kubectl get ingress -A'"
+    echo "alias kgc='kubectl config get-contexts'"
 
     echo ""
     echo "#remove git aliases"
