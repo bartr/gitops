@@ -1,0 +1,33 @@
+# Default values for pos
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+namespace: pos
+nameOverride: pos
+fullnameOverride: pos
+uri: /pos
+
+image:
+  repository: ghcr.io/cse-labs/heartbeat
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "0.4.0"
+
+env:
+  Namespace: pos
+  Application: pos
+  TITLE: POS
+  URI: /pos
+  Region: Lab
+  State: TX
+  City: Austin
+  Ring: lab
+
+service:
+  type: ClusterIP
+  port: 8080
+
+livenessProbe:
+  httpGet:
+    path: /pos/healthz
+    port: http
