@@ -12,7 +12,8 @@ spec:
   chart:
     spec:
       chart: ./charts/heartbeat
-      valuesFile: values.yaml
+      valuesFiles:
+        - ./clusters/lab01/heartbeat/values.yaml
       sourceRef:
         kind: GitRepository
         name: gitops
