@@ -28,7 +28,7 @@ kubectl apply -f source.yaml
 
 # this single kustomization will manage all of the kustomizations and Helm Releases
 cd ../clusters/lab01/flux-listeners
-kubectl apply -f flux-kustomization.yaml
+kubectl apply -f flux.yaml
 
 # force flux to reconcile
 flux reconcile source git gitops
