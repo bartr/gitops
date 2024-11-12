@@ -2,12 +2,8 @@
 
 echo "export CLUSTER_NAME=${CODESPACE_NAME%-*}" >> "$HOME/.zshrc"
 
-# Create aliases
-mkdir -p "$HOME/.oh-my-zsh/customizations"
-{
-    echo "alias k='kubectl'"
-    echo "alias kaf='kubectl apply -f'"
-    echo "alias kak='kubectl apply -k'"
-    echo "alias kdelf='kubectl delete -f'"
-    echo "alias kl='kubectl logs'"
-} >> "$HOME/.oh-my-zsh/custom/alias.zsh"
+echo "Creating k3d cluster"
+# k3d cluster create \
+# -p '80:80@loadbalancer' \
+# -p '443:443@loadbalancer' \
+# -p '8080:8080@loadbalancer'
