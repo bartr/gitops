@@ -1,10 +1,10 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/kubernetes-helm-minikube
 {
-  "name": "Kubernetes in Codespaces",
-  "build": {
-    "dockerfile": "Dockerfile"
-  },
+	"name": "Kubernetes in Codespaces",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
 
 	"features": {
 		"ghcr.io/devcontainers/features/docker-in-docker:2": {
@@ -19,18 +19,18 @@
 		"ghcr.io/devcontainers/features/dotnet:2": {
 			"version": "8.0"
 		},
-      // "ghcr.io/devcontainers/features/azure-cli:1": {
-    //   "extensions": "connectedk8s,k8s-extension"
-    // },
-    "ghcr.io/rio/features/k3d:1": {},
-    "ghcr.io/rio/features/k9s:1": {},
-    "ghcr.io/rio/features/kustomize:1": {}
+        "ghcr.io/devcontainers/features/azure-cli:1": {
+            "extensions": "connectedk8s,k8s-extension"
+        },
+		"ghcr.io/rio/features/k3d:1": {},
+		"ghcr.io/rio/features/k9s:1": {},
+		"ghcr.io/rio/features/kustomize:1": {}
 	},
 
-  // some base images require a specific user name
-  "remoteUser": "vscode",
+	// some base images require a specific user name
+	"remoteUser": "vscode",
 
-  // Configure tool-specific properties.
+	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {
 			// Set container specific settings
@@ -57,31 +57,24 @@
 		}
 	},
 
-  "hostRequirements": {
-    "cpus": 4
-  },
+	"hostRequirements": {
+		"cpus": 4
+	},
 
-  "secrets": {
-    "SUBSCRIPTION_ID": {
-      "description": "Your Azure subscription ID"
-    },
-    "RESOURCE_GROUP": {
-      "description": "Your Azure resource group"
-    },
-    "LOCATION": {
-      "description": "Region to use, must be one of eastus, eastus2, westus, westus2, westus3, westeurope, or northeurope.",
-      "documentationUrl": "https://learn.microsoft.com/azure/iot-operations/deploy-iot-ops/howto-prepare-cluster"
-    }
-  },
+	"secrets": {
+		"PAT": {
+			"description": "Your GitHub Personal Access Token"
+		}
+	},
 
-  "containerEnv": {
-    // This env var is important to allow k3s to support shared mounts, required for CSI driver
-    // Temporary fix until made default https://github.com/k3d-io/k3d/pull/1268#issuecomment-1745466499
-    "K3D_FIX_MOUNTS": "1"
-  },
+	"containerEnv": {
+		// Temporary fix until made default https://github.com/k3d-io/k3d/pull/1268#issuecomment-1745466499
+		"K3D_FIX_MOUNTS": "1"
+	},
 
-	"waitFor": "postCreateCommand",
+	"waitFor": "postStartCommand",
 
-  "onCreateCommand": "/bin/bash .devcontainer/onCreateCommand.sh",
-  "postStartCommand": "/bin/bash .devcontainer/postStartCommand.sh"
+	"onCreateCommand": "/bin/bash .devcontainer/onCreateCommand.sh",
+	"postCreateCommand": "/bin/bash .devcontainer/postCreateCommand.sh",
+	"postStartCommand": "/bin/bash .devcontainer/postStartCommand.sh"
 }
