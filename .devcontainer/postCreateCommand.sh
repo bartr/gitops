@@ -1,6 +1,9 @@
 #!/bin/bash
 
-echo "export CLUSTER_NAME=${CODESPACE_NAME%-*}" >> "$HOME/.zshrc"
+{
+    echo ""
+    echo "export CLUSTER_NAME=${CODESPACE_NAME%-*}" >> "$HOME/.zshrc"
+} >> "$HOME/.oh-my-zsh/custom/alias.zsh"
 
 echo "Creating k3d cluster"
 # k3d cluster create \

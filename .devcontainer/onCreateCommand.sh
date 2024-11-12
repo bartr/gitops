@@ -34,12 +34,25 @@ kustomize completion zsh > "$HOME/.oh-my-zsh/completions/_kustomize"
 # Create aliases
 mkdir -p "$HOME/.oh-my-zsh/customizations"
 {
+    echo "#kubectl aliases"
     echo "alias k='kubectl'"
     echo "alias kaf='kubectl apply -f'"
     echo "alias kak='kubectl apply -k'"
     echo "alias kdelf='kubectl delete -f'"
     echo "alias kl='kubectl logs'"
-} >> "$HOME/.oh-my-zsh/custom/alias.zsh"
+
+    echo ""
+    echo "#remove git aliases"
+    echo "for alias_name in \$(alias | grep 'git' | awk -F'=' '{print \$1}' | sed \"s/'//g\"); do"
+    echo "    unalias \$alias_name"
+    echo "done"
+
+    echo ""
+    echo "#remove deprecated aliases"
+    echo "for alias_name in \$(alias | grep 'deprecated alias' | awk -F'=' '{print \$1}' | sed \"s/'//g\"); do"
+    echo "    unalias \$alias_name"
+    echo "done"
+} > "$HOME/.oh-my-zsh/custom/alias.zsh"
 
 sudo apt-get update
 
