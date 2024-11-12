@@ -24,7 +24,7 @@ git config --global core.editor "nano -w"
 
 echo "installing flux"
 curl -s https://fluxcd.io/install.sh | sudo bash
-sudo chown root:docker flux
+sudo chown root:docker /usr/local/bin/flux
 
 echo "generating completions"
 mkdir -p "$HOME/.oh-my-zsh/completions"
