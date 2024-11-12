@@ -1,0 +1,19 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: cert-manager
+  namespace: flux-system
+spec:
+  releaseName: cert-manager
+  interval: 1m
+  targetNamespace: cert-manager
+  install:
+    createNamespace: true
+  chart:
+    spec:
+      chart: ./charts/cert-manager
+      valuesFiles:
+        - values.yaml
+      sourceRef:
+        kind: GitRepository
+        name: gitops
