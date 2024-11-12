@@ -4,7 +4,7 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-echo "on-create start"
+echo "onCreate start"
 
 # Change shell to zsh for vscode
 sudo chsh --shell /bin/zsh vscode
@@ -61,4 +61,4 @@ if [ "$CODESPACE_NAME" = "null" ]; then
     sudo apt-get upgrade -y
 fi
 
-echo "on-create complete"
+echo "onCreate complete"
