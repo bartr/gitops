@@ -1,7 +1,5 @@
 #!/bin/bash
 
-echo "postCreate start"
-
 {
     echo ""
     echo "export CLUSTER_NAME=${CODESPACE_NAME%-*}" >> "$HOME/.zshrc"
@@ -12,5 +10,3 @@ echo "Creating k3d cluster"
 # -p '80:80@loadbalancer' \
 # -p '443:443@loadbalancer' \
 # -p '8080:8080@loadbalancer'
-
-echo "postCreate complete"

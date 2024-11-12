@@ -4,8 +4,6 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-echo "onCreate start"
-
 # Change shell to zsh for vscode
 sudo chsh --shell /bin/zsh vscode
 
@@ -54,11 +52,11 @@ mkdir -p "$HOME/.oh-my-zsh/customizations"
     echo "done"
 } > "$HOME/.oh-my-zsh/custom/alias.zsh"
 
+echo "running apt-get update"
 sudo apt-get update
 
 # only run apt upgrade on pre-build
 if [ "$CODESPACE_NAME" = "null" ]; then
+    echo "running apt-get upgrade"
     sudo apt-get upgrade -y
 fi
-
-echo "onCreate complete"
